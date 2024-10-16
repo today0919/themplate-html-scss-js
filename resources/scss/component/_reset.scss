@@ -13,10 +13,10 @@ body {
   scroll-behavior: smooth;
 }
 html {
-  font-size: $font-size-root;
+  font-size: $font-size-root; // 10px = 1rem 설정
 }
 body {
-  font-size: $font-size-base;
+  font-size: $font-size-base; // 1.7rem = 17px
   overflow-x: hidden;
 }
 *:focus {
