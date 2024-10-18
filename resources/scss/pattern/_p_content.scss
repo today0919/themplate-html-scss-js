@@ -1,9 +1,4 @@
 // 사이트 컨텐츠 내용
-#skip-nav,
-#header {
-  display: none;
-}
-
 :root {
   --swiper-theme-color: red;
 }
@@ -37,8 +32,7 @@
   }
   .swiper-button-next::before,
   .swiper-button-prev::before {
-    font-family: "Line Awesome Free";
-    font-weight: 900;
+    @include lineAwesome;
     font-size: 3rem;
     color: $black;
     opacity: 0.5;
@@ -54,6 +48,13 @@
 .slide-intro {
   .swiper-slide {
     position: relative;
+    &.swiper-slide-active {
+      .text-area {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
     img {
       object-position: 50% 100%;
     }
@@ -61,9 +62,11 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, 0);
       width: 70%;
       max-width: 400px;
+      opacity: 0;
+      transition: all 0.5s;
       // .text-area__tit
       &__tit {
         font-size: 3rem;
@@ -98,34 +101,47 @@
 
 // desktop
 @media screen and (min-width: 1024px) {
-  .slide-intro .swiper-slide img {
-    height: 90vh;
-  }
-  .slide-intro .swiper-slide .text-area {
-    width: 100%;
-    max-width: none;
-    text-align: left;
-  }
-  .slide-intro .swiper-slide .text-area__tit {
-    font-size: 6rem;
-  }
-  .slide-intro .swiper-slide .text-area__cont {
-    font-size: 2rem;
-  }
-  .slide-intro .swiper-slide .text-area__goto {
-    margin-top: 30px;
-  }
-  .slide-intro .swiper-pagination {
-    display: block;
-  }
-  .slide-intro .swiper-button-next,
-  .slide-intro .swiper-button-prev {
-    display: none;
+  .slide-intro {
+    .swiper-slide {
+      img {
+        height: 90vh;
+      }
+      .text-area {
+        width: 100%;
+        max-width: none;
+        text-align: left;
+      }
+      .text-area__tit {
+        font-size: 6rem;
+      }
+      .text-area__cont {
+        font-size: 2rem;
+      }
+      .text-area__goto {
+        margin-top: 30px;
+      }
+    }
+    .swiper-pagination {
+      display: block;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
   }
 }
 
 .slide-studio {
   overflow: visible;
+  width: 80%;
+  margin-left: 0;
+  @include mobileMore {
+    width: 90%;
+  }
+  @include tabletMore {
+    width: 100%;
+    margin-left: auto;
+  }
   .swiper-pagination {
     bottom: -50px;
   }
